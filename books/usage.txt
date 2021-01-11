@@ -5,21 +5,27 @@ NAME
 
 	years - search and list books which were published within a range
 
-SYNOPSIS
-	titles [OPTION] [SEARCH TERM]
-
-	authors [OPTION] [SEARCH TERM]
-
-	years [OPTION] [YEAR RANGE]
 
 DESCRIPTION
-	-a, -ascending [DEFAULT]
-		lists the displayed results in ascending order 
-	-d, -descending
+	-d, --descending
 		lists the displayed results in descending order
-	-b, -book [DEFAULT]
-		sorts by book title
-	-n, -name
-		sorts by author's name
-	-y, -year
-		sorts by publication year
+	
+	-t, --titles "search phrase"
+		search and list matching titles to keyword
+	
+	-a, --authors
+		search and list matching authors to keyword
+	
+	-y, --years
+		search and list books which were published within a range	
+
+	-o, --order
+		which category to sort by
+
+
+EXAMPLES
+python3 books.py -t "wuthering" 
+python3 books.py --authors "orwell"
+python3 books.py --years 1900 1902
+
+
