@@ -1,7 +1,9 @@
+#Riaz Kelly, Matthew Smith-Erb
 import argparse
 import csv
 import sys
 
+#create a parser object to get arguments
 def get_parsed_arguments():
     parser = argparse.ArgumentParser(description='Filter and display information about books.csv')
     parser.add_argument('-t', "--titles", default="", nargs='?', help='Phrase in title to filter by')
@@ -13,17 +15,21 @@ def get_parsed_arguments():
     parsed_arguments = parser.parse_args()
     return parsed_arguments
 
+#print only the titles of books
 def print_titles(book_list, descending):
     book_list.sort(reverse = descending, key=lambda x: x[0])
     for book in book_list:
         print(book[0])
 
+#print the titles of books follow by their publication year
 def print_years(book_list, descending):
-   	book_list.sort(reverse = descending, key=lambda x: x[1])
+    book_list.sort(reverse = descending, key=lambda x: x[1])
     for book in book_list:
-        print(book[0], ",", book[1])
+        print(book[0], book[1])
 
+#print the name of authors followed by the books they wrote matching the filter
 def print_authors(book_list, descending):
+    #dict where keys are author's names and values are a list of strings of books they wrote
     authors_books = {}
     for book in book_list:
         if book[2] in authors_books:
@@ -31,7 +37,7 @@ def print_authors(book_list, descending):
         else:
             authors_books[book[2]] = [book[0]]
 
-    for author in sorted(author_books.keys(), reverse = descending):
+    for author in sorted(authors_books.keys(), reverse = descending):
         print(author)
         for book in authors_books[author]:
             print("\t", book)
@@ -39,10 +45,13 @@ def print_authors(book_list, descending):
 
 def main():
     arguments = get_parsed_arguments()
-    print(arguments)
+    #list of books that will fit the filters
     books = []
+
     with open('books.csv', newline='') as f:
         reader = csv.reader(f)
+
+        #adds entries into books if they fit the filter
         for row in reader:
             if not(arguments.titles.lower() in row[0].lower()):
                 continue
@@ -56,6 +65,7 @@ def main():
                     continue
             books.append(row)
 
+    #call the correct print method according to --order flag
     if arguments.order == "title":
         print_titles(books, arguments.descending)
     elif arguments.order =="year":
