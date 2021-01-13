@@ -19,6 +19,7 @@ def print_titles(book_list, descending):
         print(book[0])
 
 def print_years(book_list, descending):
+   	book_list.sort(reverse = descending, key=lambda x: x[1])
     for book in book_list:
         print(book[0], ",", book[1])
 
@@ -30,7 +31,7 @@ def print_authors(book_list, descending):
         else:
             authors_books[book[2]] = [book[0]]
 
-    for author in authors_books:
+    for author in sorted(author_books.keys(), reverse = descending):
         print(author)
         for book in authors_books[author]:
             print("\t", book)
@@ -58,16 +59,16 @@ def main():
     if arguments.order == "title":
         print_titles(books, arguments.descending)
     elif arguments.order =="year":
-        print_years(books)
+        print_years(books, arguments.descending)
     elif arguments.order =="author":
-        print_authors(books)
+        print_authors(books, arguments.descending)
     elif arguments.order == "":
         if arguments.titles != "":
             print_titles(books, arguments.descending)
         elif arguments.authors != "":
-            print_authors(books)
+            print_authors(books, arguments.descending)
         elif arguments.years != None:
-            print_years(books)
+            print_years(books, arguments.descending)
         else:
             print("No search argument was inputed, type books.py --help to see commands", file=sys.stderr)
     else:
