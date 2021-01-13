@@ -6,11 +6,16 @@ import sys
 #create a parser object to get arguments
 def get_parsed_arguments():
     parser = argparse.ArgumentParser(description='Filter and display information about books.csv')
-    parser.add_argument('-t', "--titles", default="", nargs='?', help='Phrase in title to filter by')
-    parser.add_argument('-a', "--authors", default="", nargs="?", help='Phrase in author\'s name to filter by')
-    parser.add_argument('-y', "--years", metavar="YEAR", nargs=2, type=int, help='Range of publication years to filter by')
-    parser.add_argument('-o', "--order", default="", nargs="?", help='[title, author, year] Which category to sort by and how to display')
-    parser.add_argument('-d', "--descending", action="store_true", help='Sets to descending')
+    parser.add_argument('-t', "--titles", default="", nargs='?',
+        help='Phrase in title to filter by')
+    parser.add_argument('-a', "--authors", default="", nargs="?",
+        help='Phrase in author\'s name to filter by')
+    parser.add_argument('-y', "--years", metavar="YEAR", nargs=2, type=int,
+        help='Range of publication years to filter by')
+    parser.add_argument('-o', "--order", default="", nargs="?",
+        help='[title, author, year] Which category to sort by and how to display')
+    parser.add_argument('-d', "--descending", action="store_true",
+        help='Order results in descending order instead of ascending')
 
     parsed_arguments = parser.parse_args()
     return parsed_arguments
