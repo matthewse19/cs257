@@ -19,8 +19,8 @@ DESCRIPTION
 	-y, --years
 		search and list books which were published within a range	
 
-	-o, --order
-		which category to sort by
+	-o, --order=[title, author, year]
+		which category to sort by and how to display
 
 
 EXAMPLES
