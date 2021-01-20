@@ -16,16 +16,26 @@ DESCRIPTION
 	-a, --authors
 		search and list matching authors to keyword
 	
-	-y, --years
-		search and list books which were published within a range	
+	-s, --start_year
+		lowest year of publication to filter books by	
+
+	-e, --end_year
+		highest year of publication to filter books by	
 
 	-o, --order=[title, author, year]
-		which category to sort by and how to display
+		which category to sort by and how to display, defaults to title
 
 
 EXAMPLES
-python3 books.py -t "wuthering" 
-python3 books.py --authors "orwell"
-python3 books.py --years 1900 1902
-
-
+Filters books by titles matching "wuthering"
+	python3 books.py -t "wuthering" 
+Filters books by authors matching "orwell"
+	python3 books.py --authors "orwell"
+Filters books published between 1900 and 1902 inclusively
+	python3 books.py -s 1900 -e 1902
+Filters books by authors matching "orwell" and years between 1900 and 2000
+	python3 books.py --authors "orwell" -s 1900 -e 2000
+Filters books published between 1900 and 1902 inclusively in descending order
+	python3 books.py -s 1900 -e 1902 -d
+Filters books published between 1900 and 1902 and orders and prints by their authors' names
+	python3 books.py -s 1900 -e 1902 -o author
