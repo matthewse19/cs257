@@ -5,7 +5,7 @@ Generates csv files for each table used from athlete_events.csv and noc_regions.
 import csv
 import sys
 
-
+csv_folder = "csvs"
 def main():
     print("Warning: this program could take close to 20 minutes to execute")
     #opens the files with a csv reader
@@ -178,16 +178,16 @@ def main():
 
 
     #generates all the csvs
-    generate_csv(athletes_data, "athletes")
-    generate_csv(teams_data, "teams")
-    generate_csv(athletes_teams_data, "athletes_teams")
-    generate_csv(sports_data, "sports")
-    generate_csv(cities_data, "cities")
-    generate_csv(events_data, "events")
-    generate_csv(seasons_data, "seasons")
-    generate_csv(sexes_data, "sexes")
-    generate_csv(games_data, "games")
-    generate_csv(medals_data, "medals")
+    generate_csv(athletes_data, csv_folder + "/" + "athletes")
+    generate_csv(teams_data, csv_folder + "/" + "teams")
+    generate_csv(athletes_teams_data, csv_folder + "/" + "athletes_teams")
+    generate_csv(sports_data, csv_folder + "/" + "sports")
+    generate_csv(cities_data, csv_folder + "/" + "cities")
+    generate_csv(events_data, csv_folder + "/" + "events")
+    generate_csv(seasons_data, csv_folder + "/" + "seasons")
+    generate_csv(sexes_data, csv_folder + "/" + "sexes")
+    generate_csv(games_data, csv_folder + "/" + "games")
+    generate_csv(medals_data, csv_folder + "/" + "medals")
     generate_csv(event_performances_data, "event_performances")
 
 
