@@ -1,6 +1,9 @@
 # Added for assignment
 .DS_Store
 
+#sensitive information about Olympic database
+config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
