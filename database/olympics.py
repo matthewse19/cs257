@@ -19,7 +19,7 @@ def get_parsed_arguments():
     subparsers = parser.add_subparsers(help='sub-command help')
 
     parser_athlete_noc = subparsers.add_parser('athletes_from', help='Prints the athletes from a specifc NOC')
-    parser_athlete_noc.add_argument('noc', nargs=1, help='Name of the national Olympic Committe')
+    parser_athlete_noc.add_argument('noc', nargs=1, help='Name of the national Olympic Committee')
 
     parser_noc_golds = subparsers.add_parser('noc_golds', help='Prints the number of golds each NOC got (descending)')
     parser_noc_golds.set_defaults(noc_golds=True)

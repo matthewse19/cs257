@@ -1,0 +1,25 @@
+usage: olympics.py [-h] {athletes_from,noc_golds,athlete_medals} ...
+
+Get information about Olympic athletes and countries
+
+positional arguments:
+  {athletes_from,noc_golds,athlete_medals}
+                        sub-command help
+    athletes_from       Prints the athletes from a specifc NOC
+	usage: olympics.py athletes_from [-h] noc
+	positional arguments:
+  		noc         Name of the national Olympic Committee
+
+    noc_golds           Prints the number of golds each NOC got (descending)
+
+    athlete_medals      Prints the medals won by athletes matching the search
+	usage: olympics.py athlete_medals [-h] name [name ...]
+
+	positional arguments:
+  		name        Name to search by
+
+
+Examples:
+python3 olympics.py athletes_from CHN
+python3 olympics.py noc_golds
+python3 olympics.py athlete_medals Gregory Efthimios
