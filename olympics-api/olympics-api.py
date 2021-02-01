@@ -38,6 +38,30 @@ def get_nocs():
 
     return json.dumps(noc_list)
 
+@app.route('/games')
+def get_games():
+    parameter = ()
+    connection = get_connection(database, user, password)
+    query = '''SELECT id, year, season, city
+                FROM games, cities, seasons
+                WHERE seasons.id=games.season_id AND cities.id=games.city_id
+                ORDER BY year''' 
+    game_data = get_query(query, parameter, connection)
+    game_list = []
+    for row in game_data:
+        id = row[0]
+        year = row[1]
+        season = row[2]
+        city = row[3]
+        game_dict = {}
+        game_dict["id"] = id
+        game_dict["year"] = year
+        game_dict["season"] = season
+        game_dict["city"] = city
+        game_list.append(game_dict)
+    return json.dumps(game_list)
+        
+
 def get_connection(database, user, password):
     '''Establishes and returns the connection with the postgres database'''
     try:
