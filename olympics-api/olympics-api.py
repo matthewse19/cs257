@@ -1,7 +1,7 @@
 '''
         Nacho Rodriguez-Cortes and Matthew Smith-Erb
 
-        
+        Creates API endpoints for an olympics database
 '''
 import sys
 import flask
@@ -16,13 +16,9 @@ from config import user
 
 app = flask.Flask(__name__)
 
-@app.route('/')
-def hello():
-    return 'Hello, Citizen of CS257.'
-
 @app.route('/nocs')
 def get_nocs():
-    ''' Returns the first matching actor, or an empty dictionary if there's no match. '''
+    ''' Returns the list of noc abbreviations and full names'''
     parameter = ()
     connection = get_connection(database, user, password)
     query = '''SELECT noc, region
@@ -33,15 +29,18 @@ def get_nocs():
     for row in noc_data:
         noc = row[0]
         country_name = row[1]
+
         noc_dict = {}
         noc_dict["abbreviation"] = noc
         noc_dict["name"] = country_name
+
         noc_list.append(noc_dict)
 
     return json.dumps(noc_list)
 
 @app.route('/games')
 def get_games():
+    '''Returns a list of all olympic games, their years, seasons, and host cities'''
     parameter = ()
     connection = get_connection(database, user, password)
     query = '''SELECT games.id, games.year, seasons.season, cities.city
@@ -55,16 +54,21 @@ def get_games():
         year = row[1]
         season = row[2]
         city = row[3]
+
         game_dict = {}
         game_dict["id"] = id
         game_dict["year"] = year
         game_dict["season"] = season
         game_dict["city"] = city
+
         game_list.append(game_dict)
+
     return json.dumps(game_list)
 
 @app.route('/medalists/games/<games_id>')
 def get_medalists(games_id):
+    '''Get all event performances from the specified olympic games with the athletes' information,
+        and from the specififed NOC if given'''
     noc = flask.request.args.get('noc')
     if noc == None:
         noc = '%'
@@ -101,7 +105,9 @@ def get_medalists(games_id):
         medalists_dict["medal"] = medal
 
         medalists_list.append(medalists_dict)
+
     return json.dumps(medalists_list)
+    
 def get_connection(database, user, password):
     '''Establishes and returns the connection with the postgres database'''
     try:
