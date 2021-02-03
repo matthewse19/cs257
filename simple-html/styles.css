@@ -1,21 +1,22 @@
 /* Matthew Smith-Erb
-A style sheet for a simple web page*/
+A style sheet for a practice web page*/
 
 div{
     border-radius: 10px;
 }
 
 #container{
-    background-color: gray;
+    background-color: white;
     width: 100%;
     height: 90vh;
-    padding: 0px;
+    padding: 0px;;
 }
 
 #top-bar{
     background-color: #FF8888;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 1%;
+    height: 10vh;
 }
 
 #side-bar{
@@ -23,12 +24,10 @@ div{
     width: 15%;
     float: left;
     height: 70vh;
-
 }
 
 #content{
     background-color: #8887FF;
-    width: 84%;
-    float: right;
+    margin-left: 16%;
     height: 70vh;
 }
